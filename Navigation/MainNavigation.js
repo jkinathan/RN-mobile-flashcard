@@ -1,4 +1,4 @@
-// MainTabNavigator.js
+// MainNavigation.js
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Platform } from 'react-native';
