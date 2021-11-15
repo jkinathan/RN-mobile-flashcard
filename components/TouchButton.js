@@ -15,7 +15,6 @@ export default function TouchButton({
   return (
     <View style={styles.btnContainer}>
       <TouchableOpacity
-        // style={[styles.btn, btnStyle, disabled ? styles.btnDisabled : null]}
         style={[styles.btn, btnStyle, disabledButton]}
         onPress={onPress}
         disabled={disabled}
@@ -24,7 +23,6 @@ export default function TouchButton({
           style={[
             styles.btnText,
             txtStyle,
-            // disabled ? styles.btnTextDisabled : {}
             disabledButtonText
           ]}
         >

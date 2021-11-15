@@ -7,6 +7,7 @@
     "start": "react-native start"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/viewpager": "^5.0.11",
     "expo": "^43.0.3",
     "expo-permissions": "^13.0.3",
