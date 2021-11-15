@@ -63,8 +63,7 @@ export class AddCard extends Component {
           <TouchButton
             btnStyle={{ backgroundColor: green, borderColor: '#fff' }}
             onPress={this.handleSubmit}
-            disabled={this.state.question === '' || this.state.answer === ''}
-          >
+            disabled={this.state.question === '' || this.state.answer === ''}>
             Submit
           </TouchButton>
         </View>

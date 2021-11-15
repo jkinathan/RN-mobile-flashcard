@@ -1,4 +1,4 @@
-// Quiz.js
+// AndroidQuiz.js
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ViewPager from '@react-native-community/viewpager';

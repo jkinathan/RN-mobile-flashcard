@@ -10,9 +10,8 @@ import {
 import DeckList from '../components/DeckList';
 import AddDeck from '../components/AddDeck';
 import DeckDetail from '../components/DeckDetail';
-import AddCard from '../components/AddCard';
+import AddCard from '../components/Card';
 import Quiz from '../components/QuizAndroid';
-import Settings from '../components/Settings';
 
 import { darkGray, white, green, lightGreen } from '../utils/colors';
 
@@ -41,24 +40,13 @@ const routeConfigs = {
       )
     }
   },
-  Settings: {
-    screen: Settings,
-    navigationOptions: {
-      tabBarLabel: 'Settings',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon.FontAwesome name="sliders" size={30} color={tintColor} />
-      )
-    }
-  }
+  
 };
 
 routeConfigs.Decks.navigationOptions.tabBarIcon.propTypes = {
   tintColor: PropTypes.string.isRequired
 };
 routeConfigs.AddDeck.navigationOptions.tabBarIcon.propTypes = {
-  tintColor: PropTypes.string.isRequired
-};
-routeConfigs.Settings.navigationOptions.tabBarIcon.propTypes = {
   tintColor: PropTypes.string.isRequired
 };
 
