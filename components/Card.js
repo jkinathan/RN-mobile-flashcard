@@ -6,6 +6,7 @@ import TouchButton from './TouchButton';
 import { gray, green } from '../utils/colors';
 import { connect } from 'react-redux';
 import { addCardToDeck } from '../actions/index';
+import { addCardToDeckAS } from '../utils/api';
 
 export class AddCard extends Component {
   static propTypes = {
@@ -31,6 +32,8 @@ export class AddCard extends Component {
     };
 
     addCardToDeck(title, card);
+    addCardToDeckAS(title, card);
+
     this.setState({ question: '', answer: '' });
     navigation.goBack();
   };

@@ -95,3 +95,32 @@ export async function saveDeckTitleAS(title) {
       console.log(err);
     }
   }
+
+  export async function addCardToDeckAS(title, card) {
+    try {
+      const deck = await getDeck(title);
+  
+      await AsyncStorage.mergeItem(
+        DECKS_STORAGE_KEY,
+        JSON.stringify({
+          [title]: {
+            questions: [...deck.questions].concat(card)
+          }
+        })
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  export async function removeDeckAS(key) {
+    try {
+      const results = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
+      const data = JSON.parse(results);
+      data[key] = undefined;
+      delete data[key];
+      AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data));
+    } catch (err) {
+      console.log(err);
+    }
+  }
