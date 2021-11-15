@@ -262,4 +262,4 @@ const mapStateToProps = (state, { title }) => {
   };
 };
 
-export default withNavigation(connect(mapStateToProps)(Quiz_Android));
+export default withNavigation(connect(mapStateToProps)(QuizAndroid));

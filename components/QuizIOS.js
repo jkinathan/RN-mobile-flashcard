@@ -19,7 +19,7 @@ const answer = {
 };
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-class Quiz_iOS extends Component {
+class QuizIOS extends Component {
   static propTypes = {
     navigation: PropTypes.object.isRequired,
     deck: PropTypes.object.isRequired
@@ -265,4 +265,4 @@ const mapStateToProps = (state, { title }) => {
   };
 };
 
-export default withNavigation(connect(mapStateToProps)(Quiz_iOS));
+export default withNavigation(connect(mapStateToProps)(QuizIOS));
