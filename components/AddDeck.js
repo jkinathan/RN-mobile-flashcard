@@ -6,6 +6,8 @@ import TouchButton from './TouchButton';
 import { gray, green, white, textGray } from '../utils/colors';
 import { connect } from 'react-redux';
 import { addDeck } from '../actions/index';
+import { saveDeckTitleAS } from '../utils/api';
+
 
 export class AddDeck extends Component {
   static propTypes = {
@@ -20,8 +22,11 @@ export class AddDeck extends Component {
   };
   handleSubmit = () => {
     const { addDeck, navigation } = this.props;
+    const { text } = this.state;
 
-    addDeck(this.state.text);
+    addDeck(text);
+    saveDeckTitleAS(text);
+
     this.setState(() => ({ text: '' }));
     navigation.goBack();
   };

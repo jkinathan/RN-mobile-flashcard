@@ -79,3 +79,19 @@ export async function resetDecks() {
     console.log(err);
   }
 }
+
+export async function saveDeckTitleAS(title) {
+    try {
+      await AsyncStorage.mergeItem(
+        DECKS_STORAGE_KEY,
+        JSON.stringify({
+          [title]: {
+            title,
+            questions: []
+          }
+        })
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
