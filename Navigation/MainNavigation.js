@@ -11,7 +11,7 @@ import DeckList from '../components/DeckList';
 import AddDeck from '../components/AddDeck';
 import DeckDetail from '../components/DeckDetail';
 import AddCard from '../components/AddCard';
-import Quiz from '../components/Quiz';
+import Quiz from '../components/QuizAndroid';
 import Settings from '../components/Settings';
 
 import { darkGray, white, green, lightGreen } from '../utils/colors';

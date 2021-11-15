@@ -9,6 +9,8 @@ import { Provider } from 'react-redux';
 import reducer from './reducers/index';
 import Constants from 'expo-constants';
 import AppNavigator from './Navigation/AppNavigation';
+import { setLocalNotification } from './utils/helpers';
+
 
 const store = createStore(
   reducer,
@@ -27,6 +29,9 @@ FlashcardStatusBar.propTypes = {
 };
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     return (
       <Provider store={store}>
