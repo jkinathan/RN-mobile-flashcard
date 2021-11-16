@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Platform } from 'react-native';
-import { Icon } from 'expo';
+import { Ionicons } from '@expo/vector-icons';
 import {
   createBottomTabNavigator,
   createStackNavigator
@@ -23,7 +23,7 @@ const routeConfigs = {
     navigationOptions: {
       tabBarLabel: 'Decks',
       tabBarIcon: ({ tintColor }) => (
-        <Icon.Ionicons
+        <Ionicons
           name={isIOS ? 'ios-bookmarks' : 'md-bookmarks'}
           size={30}
           color={tintColor}
@@ -36,7 +36,7 @@ const routeConfigs = {
     navigationOptions: {
       tabBarLabel: 'Add Deck',
       tabBarIcon: ({ tintColor }) => (
-        <Icon.FontAwesome name="plus-square" size={30} color={tintColor} />
+        <Ionicons.FontAwesome name="plus-square" size={30} color={tintColor} />
       )
     }
   },
