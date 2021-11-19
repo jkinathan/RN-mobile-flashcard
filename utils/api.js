@@ -1,89 +1,47 @@
-import AsyncStorage from '@react-native-community/async-storage';
-import { decks } from './_DATA';
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { decksList } from './_DATA';
 
-const DECKS_STORAGE_KEY = 'MobileFlashcards:decks';
+export const DECK_STORAGE_KEY = "mobileflashcards:decks"
 
-export async function getDecks() {
-  try {
-    const storeResults = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
-
-    if (storeResults === null) {
-      AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
+/**
+ * @description Return all the decks in the database
+ * @returns {object} data
+ */
+export async function getDecks () {
+    try {
+        const data  = await AsyncStorage.getItem(DECK_STORAGE_KEY);
+        if (data  === null) {
+          AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decksList));
+        }
+        return data  === null ? decksList : JSON.parse(data);
+    } catch (err) {
+        console.log(err);
     }
-
-    return storeResults === null ? decks : JSON.parse(storeResults);
-  } catch (err) {
-    console.log(err);
-  }
 }
 
-export async function getDeck(id) {
-  try {
-    const storeResults = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
-
-    return JSON.parse(storeResults)[id];
-  } catch (err) {
-    console.log(err);
-  }
+/**
+ * @description Return deck by id in the database
+ * @param {string} title 
+ * @returns {object} dataById
+ */
+export async function getDeck(title) {
+    try {
+      const data = await AsyncStorage.getItem(DECK_STORAGE_KEY);
+  
+      return JSON.parse(data)[title];
+    } catch (err) {
+      console.log(err);
+    }
 }
 
+/**
+ * @description Save Deck as a title
+ * @param {string} title 
+ */
 export async function saveDeckTitle(title) {
-  try {
-    await AsyncStorage.mergeItem(
-      DECKS_STORAGE_KEY,
-      JSON.stringify({
-        [title]: {
-          title,
-          questions: []
-        }
-      })
-    );
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-export async function removeDeck(key) {
-  try {
-    const results = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
-    const data = JSON.parse(results);
-    data[key] = undefined;
-    delete data[key];
-    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data));
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-export async function addCardToDeck(title, card) {
-  try {
-    const deck = await getDeck(title);
-
-    await AsyncStorage.mergeItem(
-      DECKS_STORAGE_KEY,
-      JSON.stringify({
-        [title]: {
-          questions: [...deck.questions].concat(card)
-        }
-      })
-    );
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-export async function resetDecks() {
-  try {
-    await AsyncStorage.removeItem(DECKS_STORAGE_KEY);
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-export async function saveDeckTitleAS(title) {
     try {
       await AsyncStorage.mergeItem(
-        DECKS_STORAGE_KEY,
+        DECK_STORAGE_KEY,
         JSON.stringify({
           [title]: {
             title,
@@ -94,14 +52,36 @@ export async function saveDeckTitleAS(title) {
     } catch (err) {
       console.log(err);
     }
-  }
+}
 
-  export async function addCardToDeckAS(title, card) {
+/**
+ * @description Remove Deck from Storage
+ * @param {string} id 
+ */
+export async function removeDeckFromStorage(id) {
+    try {
+      const decksData = await AsyncStorage.getItem(DECK_STORAGE_KEY);
+      const decksList = JSON.parse(decksData);
+  
+      decksList[id] = undefined;
+      delete decksList[id];
+      await AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decksList));
+    } catch (e) {
+      console.log(e);
+    }
+};
+
+/**
+ * @description Add Card to the Deck
+ * @param {string} title 
+ * @param {object} card 
+ */
+export async function addCardToDeck(title, card) {
     try {
       const deck = await getDeck(title);
   
       await AsyncStorage.mergeItem(
-        DECKS_STORAGE_KEY,
+        DECK_STORAGE_KEY,
         JSON.stringify({
           [title]: {
             questions: [...deck.questions].concat(card)
@@ -111,16 +91,15 @@ export async function saveDeckTitleAS(title) {
     } catch (err) {
       console.log(err);
     }
-  }
+}
 
-  export async function removeDeckAS(key) {
+/**
+ * @description Reset all deck in storage
+ */
+export async function resetDecks() {
     try {
-      const results = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
-      const data = JSON.parse(results);
-      data[key] = undefined;
-      delete data[key];
-      AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data));
+      await AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(decksList));
     } catch (err) {
       console.log(err);
     }
-  }
+}

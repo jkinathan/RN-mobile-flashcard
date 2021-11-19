@@ -5,14 +5,13 @@ import { Platform } from 'react-native';
 import { FontAwesome5,Ionicons } from '@expo/vector-icons';
 // import { createStackNavigator } from 'react-navigation';
 import { TabNavigator, createStackNavigator } from "react-navigation";
-// import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import DeckList from '../components/DeckList';
 import AddDeck from '../components/AddDeck';
 import DeckDetail from '../components/DeckDetail';
 import AddCard from '../components/Card';
 import Quiz from '../components/QuizAndroid';
 
-import { darkGray, white, green, lightGreen } from '../utils/colors';
+import { green, lightGreen } from '../utils/colors';
 
 const Tabs = TabNavigator(
   {
@@ -51,7 +50,6 @@ const Tabs = TabNavigator(
     },
   }
 );
-
 
 const MainNavigator = createStackNavigator(
   {
